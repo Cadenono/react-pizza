@@ -1,0 +1,13 @@
+const express = require("express");
+const pizzaRoutes = require("./routes/pizzaRoutes");
+const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const app = express();
+app.use(express.json());
+const connectDB = require("./config/db");
+connectDB();
+app.use("/api/pizzas", pizzaRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server running on ${port}`));
